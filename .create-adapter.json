@@ -1,0 +1,38 @@
+{
+	"cli": true,
+	"adapterName": "hegoadapter",
+	"title": "hegosFirstOne",
+	"description": "this is my first adapter",
+	"contributors": [
+		"Contributors will be named as soon as I know what I'm doing"
+	],
+	"expert": "no",
+	"features": [
+		"adapter"
+	],
+	"adminFeatures": [],
+	"type": "lighting",
+	"startMode": "daemon",
+	"connectionType": "local",
+	"dataSource": "poll",
+	"connectionIndicator": "no",
+	"language": "JavaScript",
+	"tools": [
+		"ESLint",
+		"type checking"
+	],
+	"indentation": "Tab",
+	"quotes": "double",
+	"es6class": "yes",
+	"authorName": "HeikoCorpInc",
+	"authorGithub": "HeikoCorpInc",
+	"authorEmail": "heikocorpinc@gmx.de",
+	"gitRemoteProtocol": "HTTPS",
+	"gitCommit": "no",
+	"license": "MIT License",
+	"ci": [
+		1
+	],
+	"dependabot": "no",
+	"creatorVersion": "1.28.0"
+}

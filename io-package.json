@@ -1,0 +1,83 @@
+{
+	"common": {
+		"name": "hegoadapter",
+		"version": "0.0.2",
+		"news": {
+			"0.0.2": {
+				"en": "nothing new",
+				"de": "nic neues",
+			},
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"zh-cn": "首次出版"
+			}
+		},
+		"title": "hegosFirstOne",
+		"titleLang": {
+			"en": "hegosFirstOne",
+			"de": "hegosFirstOne",
+			"ru": "hegosFirstOne",
+			"pt": "hegosFirstOne",
+			"nl": "hegosFirstOne",
+			"fr": "hegosFirstOne",
+			"it": "hegosFirstOne",
+			"es": "hegosFirstOne",
+			"pl": "hegosFirstOne",
+			"zh-cn": "hegosFirstOne"
+		},
+		"desc": {
+			"en": "this is my first adapter",
+			"de": "this is my first adapter",
+			"ru": "this is my first adapter",
+			"pt": "this is my first adapter",
+			"nl": "this is my first adapter",
+			"fr": "this is my first adapter",
+			"it": "this is my first adapter",
+			"es": "this is my first adapter",
+			"pl": "this is my first adapter",
+			"zh-cn": "this is my first adapter"
+		},
+		"authors": [
+			"HeikoCorpInc <heikocorpinc@gmx.de>"
+		],
+		"keywords": [
+			"ioBroker",
+			"template",
+			"Smart Home",
+			"home automation"
+		],
+		"license": "MIT",
+		"platform": "Javascript/Node.js",
+		"main": "main.js",
+		"icon": "hegoadapter.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/HeikoCorpInc/ioBroker.hegoadapter/master/admin/hegoadapter.png",
+		"readme": "https://github.com/HeikoCorpInc/ioBroker.hegoadapter/blob/master/README.md",
+		"loglevel": "info",
+		"mode": "daemon",
+		"type": "lighting",
+		"compact": true,
+		"connectionType": "local",
+		"dataSource": "poll",
+		"materialize": true,
+		"dependencies": [
+			{
+				"js-controller": ">=1.4.2"
+			}
+		]
+	},
+	"native": {
+		"option1": true,
+		"option2": "42"
+	},
+	"objects": [],
+	"instanceObjects": []
+}
