@@ -75,78 +75,75 @@ class Hegoadapter extends utils.Adapter {
 			native: {},
 		});
 */		
-		this.config.commandRepeat = parseInt(this.config.commandRepeat, 10) || 2;
-		this.log.warn('objs.commandRepeat1: ' + this.config.commandRepeat);
-		if (!this.config.ip) {
-			this.log.warn('No IP address defined');
+		let myAdapter = this;
+		myAdapter.config.commandRepeat = parseInt(myAdapter.config.commandRepeat, 10) || 2;
+		if (!myAdapter.config.ip) {
+			myAdapter.log.warn('No IP address defined');
 			return;
 		}
-		let myTest = this;
-		if (this.config.version === '6') {
-			this.setState('info.connection', false, true);
+		if (myAdapter.config.version === '6') {
+			myAdapter.setState('info.connection', false, true);
 			light = new require(__dirname + '/lib/bridge.js')({
-				ip:                     this.config.ip,
-				port:                   parseInt(this.config.port, 10) || 5987,
+				ip:                     myAdapter.config.ip,
+				port:                   parseInt(myAdapter.config.port, 10) || 5987,
 				reconnectTimeout:       10000,
 				disconnectTimeout:      10000,
 				keepAliveTimeout:       10000,
 				delayBetweenCommands:   50,
-				commandRepeat:          this.config.commandRepeat,
+				commandRepeat:          myAdapter.config.commandRepeat,
 				debug:                  true,
-/*				log:                    {
+				log:                    {
 					log:   function (text) {
-						this.log.debug(text);
+						myAdapter.log.debug(text);
 					},
 					error: function (text) {
-						this.log.error(text);
+						myAdapter.log.error(text);
 					}
 				}
-*/			});
-		this.log.warn('objs.commandRepeat2: ' + this.config.commandRepeat);
+			});
 			light.on('connected', function () {
-		myTest.log.warn('objs.commandRepeat3: ' + myTest.config.commandRepeat);
-				this.setState('info.connection', true, true);
+				myAdapter.setState('info.connection', true, true);
 			});
 			light.on('disconnected', function () {
-				this.setState('info.connection', false, true);
+				myAdapter.setState('info.connection', false, true);
 			});
 			zones[0] = light.baseCtlFactory();
 		} else {
-			this.setState('info.connection', true, true);
+			myAdapter.setState('info.connection', true, true);
 			var Milight = require('node-milight-promise').MilightController;
 			commands    = require('node-milight-promise').commands2;
 			light = new Milight({
-				ip:                     this.config.ip,
-				delayBetweenCommands:   this.delayBetweenCommands,
-				commandRepeat:          this.config.commandRepeat
+				ip:                     myAdapter.config.ip,
+				delayBetweenCommands:   myAdapter.delayBetweenCommands,
+				commandRepeat:          myAdapter.config.commandRepeat
 			});
 		}
 		var objs = [];
-		var nameStatesV = nameStates['v' + this.config.version];
+		var nameStatesV = nameStates['v' + myAdapter.config.version];
 		for (var n = 0; n < nameStatesV.basic.length; n++) {
 			if (!stateCommands[nameStatesV.basic[n]]) {
-				this.log.error('Unknown command: ' + nameStatesV.basic[n]);
+				myAdapter.log.error('Unknown command: ' + nameStatesV.basic[n]);
 				continue;
 			}
 			var _obj = JSON.parse(JSON.stringify(stateCommands[nameStatesV.basic[n]]));
 			if (!_obj) {
-				this.log.error('Unknown state: ' + nameStatesV.basic[n]);
+				myAdapter.log.error('Unknown state: ' + nameStatesV.basic[n]);
 				continue;
 			}
 			_obj.common.name = 'All Zones ' + _obj.common.name;
-			_obj._id = this.namespace + '.zoneAll.' + nameStatesV.basic[n];
+			_obj._id = myAdapter.namespace + '.zoneAll.' + nameStatesV.basic[n];
 			objs.push(_obj);
 		}
-		if (this.config.version === '6') {
+		if (myAdapter.config.version === '6') {
 			zones[0] = light.baseCtlFactory();
 		} else {
 			zones[0] = commands.rgbw;
 		}
 		for (var z = 1; z <= 4; z++) {
-			var type = this.config['zone' + z];
+			var type = myAdapter.config['zone' + z];
 			var names = nameStatesV[type];
 			if (names) {
-				if (this.config.version === '6') {
+				if (myAdapter.config.version === '6') {
 					if (type === 'basic') {
 						zones[z] = light.baseCtlFactory();
 					} else
@@ -175,16 +172,16 @@ class Hegoadapter extends utils.Adapter {
 				}
 				for (var s = 0; s < names.length; s++) {
 					if (!stateCommands[names[s]]) {
-						this.log.error('State ' + names[s] + ' unknown');
+						myAdapter.log.error('State ' + names[s] + ' unknown');
 						continue;
 					}
 					var obj = JSON.parse(JSON.stringify(stateCommands[names[s]]));
 					if (!obj) {
-						this.log.error('Unknown state: ' + names[s]);
+						myAdapter.log.error('Unknown state: ' + names[s]);
 						continue;
 					}
 					obj.common.name = 'Zone ' + z + ' ' + obj.common.name;
-					obj._id = this.namespace + '.zone' + z + '.' + names[s];
+					obj._id = myAdapter.namespace + '.zone' + z + '.' + names[s];
 					objs.push(obj);
 				}
 			}
@@ -193,10 +190,10 @@ class Hegoadapter extends utils.Adapter {
 		for (var i_index in objs) {
 		  var i = objs[i_index];
 		}
-/*		mergeObjects(objs, function () {
-			this.subscribeStates('*');
+		mergeObjects(objs, function () {
+			myAdapter.subscribeStates('*');
 		});
-*/
+
 
 		// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
 		// this.subscribeStates("testVariable");
