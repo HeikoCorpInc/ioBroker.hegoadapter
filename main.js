@@ -76,6 +76,7 @@ class Hegoadapter extends utils.Adapter {
 		});
 */		
 		this.config.commandRepeat = parseInt(this.config.commandRepeat, 10) || 2;
+		this.log.info('objs.commandRepeat ' + this.config.commandRepeat);
 		if (!this.config.ip) {
 			this.log.warn('No IP address defined');
 			return;
@@ -100,15 +101,17 @@ class Hegoadapter extends utils.Adapter {
 					}
 				}
 */			});
+		this.log.info('objs.commandRepeat ' + this.config.commandRepeat);
 			light.on('connected', function () {
-				this.setStateAsync('info.connection', true, true);
+				this.setState('info.connection', true, true);
+		this.log.info('objs.commandRepeat ' + this.config.commandRepeat);
 			});
 			light.on('disconnected', function () {
-				this.setStateAsync('info.connection', false, true);
+				this.setState('info.connection', false, true);
 			});
 			zones[0] = light.baseCtlFactory();
 		} else {
-			this.setStateAsync('info.connection', true, true);
+			this.setState('info.connection', true, true);
 			var Milight = require('node-milight-promise').MilightController;
 			commands    = require('node-milight-promise').commands2;
 			light = new Milight({
@@ -188,10 +191,7 @@ class Hegoadapter extends utils.Adapter {
 
 		for (var i_index in objs) {
 		  var i = objs[i_index];
-		  this.log.info('objs ' + i);
 		}
-		this.log.info('objs.count ' + objs.count);
-		this.log.info('objs.length ' + objs.length);
 /*		mergeObjects(objs, function () {
 			this.subscribeStates('*');
 		});
