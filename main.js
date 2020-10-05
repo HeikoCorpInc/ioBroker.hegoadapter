@@ -91,7 +91,7 @@ class Hegoadapter extends utils.Adapter {
 				delayBetweenCommands:   50,
 				commandRepeat:          this.config.commandRepeat,
 				debug:                  true,
-				log:                    {
+/*				log:                    {
 					log:   function (text) {
 						this.log.debug(text);
 					},
@@ -99,7 +99,7 @@ class Hegoadapter extends utils.Adapter {
 						this.log.error(text);
 					}
 				}
-			});
+*/			});
 			light.on('connected', function () {
 				this.setState('info.connection', true, true);
 			});
