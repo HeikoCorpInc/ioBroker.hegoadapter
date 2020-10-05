@@ -766,6 +766,7 @@ function splitColor(rgb) {
 }
 
 function mergeObject(obj, cb) {
+	this.log.warn('who am I?');
     this.getForeignObject(obj._id, function (err, _obj) {
         if (_obj) {
             var changed = false;
