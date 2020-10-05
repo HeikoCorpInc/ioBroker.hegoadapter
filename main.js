@@ -81,6 +81,7 @@ class Hegoadapter extends utils.Adapter {
 			this.log.warn('No IP address defined');
 			return;
 		}
+		let myTest = this;
 		if (this.config.version === '6') {
 			this.setState('info.connection', false, true);
 			light = new require(__dirname + '/lib/bridge.js')({
@@ -103,7 +104,7 @@ class Hegoadapter extends utils.Adapter {
 */			});
 		this.log.warn('objs.commandRepeat2: ' + this.config.commandRepeat);
 			light.on('connected', function () {
-		this.log.warn('objs.commandRepeat3: ' + this.config.commandRepeat);
+		myTest.log.warn('objs.commandRepeat3: ' + this.config.commandRepeat);
 				this.setState('info.connection', true, true);
 			});
 			light.on('disconnected', function () {
