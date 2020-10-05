@@ -63,7 +63,7 @@ class Hegoadapter extends utils.Adapter {
 		Here a simple template for a boolean variable named "testVariable"
 		Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
 		*/
-		await this.setObjectNotExistsAsync("testVariable", {
+/*		await this.setObjectNotExistsAsync("testVariable", {
 			type: "state",
 			common: {
 				name: "testVariable",
@@ -74,7 +74,7 @@ class Hegoadapter extends utils.Adapter {
 			},
 			native: {},
 		});
-		
+*/		
 		this.config.commandRepeat = parseInt(this.config.commandRepeat, 10) || 2;
 		if (!this.config.ip) {
 			this.log.warn('No IP address defined');
@@ -188,17 +188,17 @@ class Hegoadapter extends utils.Adapter {
 
 		for (var i_index in objs) {
 		  var i = objs[i_index];
-		  this.log('objs ' + i);
+		  this.log.info('objs ' + i);
 		}
-		this.log('objs.count ' + objs.count);
-		this.log('objs.length ' + objs.length);
+		this.log.info('objs.count ' + objs.count);
+		this.log.info('objs.length ' + objs.length);
 /*		mergeObjects(objs, function () {
 			this.subscribeStates('*');
 		});
 */
 
 		// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
-		this.subscribeStates("testVariable");
+		// this.subscribeStates("testVariable");
 		// You can also add a subscription for multiple states. The following line watches all states starting with "lights."
 		// this.subscribeStates("lights.*");
 		// Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
@@ -209,14 +209,14 @@ class Hegoadapter extends utils.Adapter {
 			you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
 		*/
 		// the variable testVariable is set to true as command (ack=false)
-		await this.setStateAsync("testVariable", true);
+		// await this.setStateAsync("testVariable", true);
 
 		// same thing, but the value is flagged "ack"
 		// ack should be always set to true if the value is received from or acknowledged from the target system
-		await this.setStateAsync("testVariable", { val: true, ack: true });
+		// await this.setStateAsync("testVariable", { val: true, ack: true });
 
 		// same thing, but the state is deleted after 30s (getState will return null afterwards)
-		await this.setStateAsync("testVariable", { val: true, ack: true, expire: 30 });
+		// await this.setStateAsync("testVariable", { val: true, ack: true, expire: 30 });
 
 		// examples for the checkPassword/checkGroup functions
 		let result = await this.checkPasswordAsync("admin", "iobroker");
