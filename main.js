@@ -104,7 +104,7 @@ class Hegoadapter extends utils.Adapter {
 */			});
 		this.log.warn('objs.commandRepeat2: ' + this.config.commandRepeat);
 			light.on('connected', function () {
-		myTest.log.warn('objs.commandRepeat3: ' + this.config.commandRepeat);
+		myTest.log.warn('objs.commandRepeat3: ' + myTest.config.commandRepeat);
 				this.setState('info.connection', true, true);
 			});
 			light.on('disconnected', function () {
