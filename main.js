@@ -186,7 +186,10 @@ class Hegoadapter extends utils.Adapter {
 			}
 		}
 
-		log('getForeignObject test ' + this.getForeignObject);
+		for (var i_index in objs) {
+		  var i = objs[i_index];
+		  log('objs ' + i);
+		}
 		mergeObjects(objs, function () {
 			this.subscribeStates('*');
 		});
