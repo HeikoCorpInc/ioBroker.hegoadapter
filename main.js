@@ -101,14 +101,14 @@ class Hegoadapter extends utils.Adapter {
 				}
 */			});
 			light.on('connected', function () {
-				this.setState('info.connection', true, true);
+				this.setStateAsync('info.connection', true, true);
 			});
 			light.on('disconnected', function () {
-				this.setState('info.connection', false, true);
+				this.setStateAsync('info.connection', false, true);
 			});
 			zones[0] = light.baseCtlFactory();
 		} else {
-			this.setState('info.connection', true, true);
+			this.setStateAsync('info.connection', true, true);
 			var Milight = require('node-milight-promise').MilightController;
 			commands    = require('node-milight-promise').commands2;
 			light = new Milight({
