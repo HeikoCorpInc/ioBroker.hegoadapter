@@ -18,8 +18,19 @@
 	<script type="text/javascript" src="words.js"></script>
 
 	<script type="text/javascript">
+	    var devices = {};
 		// This will be called by the admin adapter when the settings page loads
 		function load(settings, onChange) {
+	        if (!settings.version) settings.version = '6';
+	        if (settings.milight_ip) {
+	            settings.ip = settings.ip || settings.milight_ip;
+	            delete settings.milight_ip;
+	        }
+	        if (settings.milight_port) {
+	            settings.port = settings.port || settings.milight_port;
+	            delete settings.milight_port;
+	        }
+			if (settings.v5onFullBright === undefined) settings.v5onFullBright = false;
 			// example: select elements with id=key and class=value and insert value
 			if (!settings) return;
 			$('.value').each(function () {
@@ -38,6 +49,37 @@
 						;
 				}
 			});
+	        getIsAdapterAlive(function (isAlive) {
+	            if (isAlive || common.enabled) {
+	                $('#discover').click(function () {
+	                    sendTo(null, 'browse', null, function (list) {
+	                        var text = list && list.length ? '<option value="">' + _('Select one') + '</option>' : '<option value="">' + _('Nothing found') + '</option>';
+	                        devices = {};
+	                        for (var j = 0; j < list.length; j++) {
+	                            devices[list[j].ip] = list[j].type[1];
+	                            text += '<option value="' + list[j].ip + '">' + list[j].ip + (list[j].version ? '(' + list[j].type + ')': '') + '</option>';
+	                        }
+	                        $('#found').html(text).show();
+	                    });
+	                }).button('enable');
+	            }
+	        });
+	        $('#discover');
+	        $('#found').change(function () {
+	            var val = $(this).val();
+	            if (val) {
+	                $('#ip').val(val);
+	                if (devices[val]) $('#version').val(devices[val]).trigger('change');
+	            }
+	        });
+	        $('#version').change(function () {
+	            if ($(this).val() === '5') {
+	                $('#port').val(8899);
+	            } else {
+	                $('#port').val(5987);
+	            }
+	        });
+        // Signal to admin, that no changes yet
 			onChange(false);
 			// reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
 			if (M) M.updateTextFields();
@@ -72,20 +114,122 @@
 		</div>
 
 		<!-- Put your content here -->
-
-		<!-- For example columns with settings: -->
-		<div class="row">
-			<div class="col s6 input-field">
-				<input type="checkbox" class="value" id="option1" />
-				<label for="option1" class="translate">option1</label>
-			</div>
-
-			<div class="col s6 input-field">
-				<input type="text" class="value" id="option2" />
-				<label for="option2" class="translate">option2</label>
-			</div>
-		</div>
-
+	    <div class="section">
+	        <div class="row">
+	            <div class="col s12">
+	                <h6 class="translate sub-title">milight box configuration</h6>
+	            </div>            
+	        </div>
+	        <div class="row">
+	            <div class="col s6">
+	                    <input class="value" id="ip"/><label for="ip" class="translate">MiLight IP</label> 
+	            </div>
+	            <div class="col s3">
+	                <a id="discover" class="btn"><span class="translate">Try/search</span></a>
+	            </div>
+	            <div class="col s3">
+	                    <select class="value" id="found">
+	                    </select>
+	                    <label for="found" class="translate">found</label>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="section">
+	        <div class="row">
+	            <div class="col s12">
+	                <h6 class="translate sub-title">milight box version/port </h6>
+	            </div>            
+	        </div>
+	        <div class="row">
+	            <div class="col s6">
+	                    <select class="value" id="version">
+	                        <option value="5" >5</option>
+	                        <option value="6" >6</option>
+	                    </select>
+	                    <label for="version" class="translate">Version</label>
+	            </div>
+	            <div class="col s6">
+	                <input class="value" id="port"/><label for="port" class="translate">MiLight Port</label>   
+	            </div>
+	        </div>
+	    </div>    
+	    <div class="section">
+	        <div class="row">
+	            <div class="col s12">
+	                <h6 class="translate sub-title">lamp configuration</h6>
+	            </div>            
+	        </div>
+	        <div class="row">
+	            <div class="col s6">
+	                <select class="value" id="zone1">
+	                    <option value="" class="translate">none</option>
+					    <option value="basic" class="translate">base</option>
+	                    <option value="White" class="translate">White</option>
+	                    <option value="RGBO" class="translate">RGB</option>
+	                    <option value="RGBW" class="translate">RGBW</option>
+	                    <option value="RGBWW" class="translate">RGBWW/Dimmer</option>
+	                </select>
+	                <label for="zone1" class="translate">Zone 1</label> 
+	            </div>
+	            <div class="col s6">
+	                    <select class="value" id="zone2">
+	                        <option value="" class="translate">none</option>
+	                        <option value="White" class="translate">White</option>
+	                        <option value="RGBW" class="translate">RGBW</option>
+	                        <option value="RGBWW" class="translate">RGBWW/Dimmer</option>
+	                    </select>
+	                    <label for="zone2" class="translate">Zone2</label>    
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="col s6">
+	                <select class="value" id="zone3">
+	                    <option value="" class="translate">none</option>
+	                    <option value="White" class="translate">White</option>
+	                    <option value="RGBW" class="translate">RGBW</option>
+	                    <option value="RGBWW" class="translate">RGBWW/Dimmer</option>
+	                </select>
+	                <label for="zone3" class="translate">Zone 3</label> 
+	            </div>
+	            <div class="col s6">
+	                    <select class="value" id="zone4">
+	                        <option value="" class="translate">none</option>
+	                        <option value="White" class="translate">White</option>
+	                        <option value="RGBW" class="translate">RGBW</option>
+	                        <option value="RGBWW" class="translate">RGBWW/Dimmer</option>
+	                    </select>
+	                    <label for="zone4" class="translate">Zone 4</label>    
+	            </div>
+	        </div>
+	    </div>
+	    <div class="section">
+	        <div class="row">
+	            <div class="col s12">
+	                <h6 class="translate sub-title">milight box special v5</h6>
+	            </div>            
+	        </div>
+	        <div class="row">
+	            <div class="col s6">
+	                <input class="value" id="delayBetweenCommands"/><label for="delayBetweenCommands" class="translate">delay between commands</label>
+	            </div>
+	            <div class="col s6">
+	                <input class="value" id="commandRepeat"/><label for="commandRepeat" class="translate">Command repeat</label>   
+	            </div>
+	        </div>
+	    </div>
+	    <div class="section">
+	        <div class="row">
+	            <div class="col s12">
+	                <h6 class="translate sub-title">fullbrightness</h6>
+	            </div>            
+	        </div>
+	        <div class="row">
+	            <div class="col s12">
+	                <input class="value" id="v5onFullBright" type="checkbox"/><span class="translate">v5 On Full Brightness and white</span>
+	                <!-- Important: span must come directly after checkbox input (only by checkbox the span will be used!) -->
+	            </div>
+	        </div>
+	    </div>
 	</div>
 
 </body>

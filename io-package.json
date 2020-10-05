@@ -5,7 +5,7 @@
 		"news": {
 			"0.0.2": {
 				"en": "nothing new",
-				"de": "nic neues"
+				"de": "nichts neues"
 			},
 			"0.0.1": {
 				"en": "initial release",
@@ -46,13 +46,17 @@
 			"zh-cn": "this is my first adapter"
 		},
 		"authors": [
-			"HeikoCorpInc <heikocorpinc@gmx.de>"
+			"HeikoCorpInc <heikocorpinc@gmx.de>",
+           		"foxthefox <foxthefox@wysiwis.net>",
+            		"bluefox <dogafox@gmail.com>"
 		],
 		"keywords": [
 			"ioBroker",
-			"template",
+			"milight",
 			"Smart Home",
-			"home automation"
+			"home automation",
+			"rgb",
+			"limitlessLED"
 		],
 		"license": "MIT",
 		"platform": "Javascript/Node.js",
@@ -75,9 +79,39 @@
 		]
 	},
 	"native": {
-		"option1": true,
-		"option2": "42"
+	        "version":  "6",
+	        "delayBetweenCommands": "100",
+	        "commandRepeat":  "1",
+	        "ip":       "",
+	        "port":     "5987",
+	        "zone1":    "RGBW",
+	        "zone2":    "RGBW",
+	        "zone3":    "RGBW",
+	        "zone4":    "RGBW",
+	        "v5onFullBright": false
 	},
 	"objects": [],
-	"instanceObjects": []
+	"instanceObjects": [
+	        {
+	            "_id":  "info",
+	            "type": "channel",
+	            "common": {
+	                "name": "Information"
+	            },
+	            "native": {}
+	        },
+	        {
+	            "_id":  "info.connection",
+	            "type": "state",
+	            "common": {
+	                "role":  "indicator.connected",
+	                "name":  "If connected to MiLight gateway",
+	                "type":  "boolean",
+	                "read":  true,
+	                "write": false,
+	                "def":   false
+	            },
+	            "native": {}
+	        }
+	]
 }

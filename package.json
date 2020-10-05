@@ -9,21 +9,32 @@
   "contributors": [
     {
       "name": "Contributors will be named as soon as I know what I'm doing"
+    },
+    {
+      "name": "foxthefox"
+    },
+    {
+      "name": "bluefox",
+      "email": "dogafox@gmail.com"
     }
   ],
   "homepage": "https://github.com/HeikoCorpInc/ioBroker.hegoadapter",
   "license": "MIT",
   "keywords": [
     "ioBroker",
-    "template",
+    "light",
     "Smart Home",
-    "home automation"
+    "home automation",
+    "easybulb",
+    "milight",
+    "limitlessLED"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/HeikoCorpInc/ioBroker.hegoadapter"
   },
   "dependencies": {
+    "node-milight-promise": "^0.3.1",
     "@iobroker/adapter-core": "^2.4.0"
   },
   "devDependencies": {
