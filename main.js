@@ -76,7 +76,7 @@ class Hegoadapter extends utils.Adapter {
 		});
 */		
 		this.config.commandRepeat = parseInt(this.config.commandRepeat, 10) || 2;
-		this.log.warn('objs.commandRepeat ' + this.config.commandRepeat);
+		this.log.warn('objs.commandRepeat1: ' + this.config.commandRepeat);
 		if (!this.config.ip) {
 			this.log.warn('No IP address defined');
 			return;
@@ -101,10 +101,10 @@ class Hegoadapter extends utils.Adapter {
 					}
 				}
 */			});
-		this.log.warn('objs.commandRepeat ' + this.config.commandRepeat);
+		this.log.warn('objs.commandRepeat2: ' + this.config.commandRepeat);
 			light.on('connected', function () {
+		this.log.warn('objs.commandRepeat3: ' + this.config.commandRepeat);
 				this.setState('info.connection', true, true);
-		this.log.warn('objs.commandRepeat ' + this.config.commandRepeat);
 			});
 			light.on('disconnected', function () {
 				this.setState('info.connection', false, true);
