@@ -188,7 +188,7 @@ class Hegoadapter extends utils.Adapter {
 
 		for (var i_index in objs) {
 		  var i = objs[i_index];
-		  log('objs ' + i);
+		  console.log('objs ' + i);
 		}
 		mergeObjects(objs, function () {
 			this.subscribeStates('*');
