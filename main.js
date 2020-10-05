@@ -192,10 +192,10 @@ class Hegoadapter extends utils.Adapter {
 		}
 		console.log('objs.count ' + objs.count);
 		console.log('objs.length ' + objs.length);
-		mergeObjects(objs, function () {
+/*		mergeObjects(objs, function () {
 			this.subscribeStates('*');
 		});
-
+*/
 
 		// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
 		this.subscribeStates("testVariable");
