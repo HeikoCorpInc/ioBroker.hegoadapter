@@ -14,6 +14,7 @@ var stateCommands = require(__dirname + '/lib/commands');
 var light         = null;
 var zones         = [];
 var commands;
+let myAdapter = this;
 
 var nameStates = {
     v6 :{
@@ -75,7 +76,6 @@ class Hegoadapter extends utils.Adapter {
 			native: {},
 		});
 */		
-		let myAdapter = this;
 		myAdapter.config.commandRepeat = parseInt(myAdapter.config.commandRepeat, 10) || 2;
 		if (!myAdapter.config.ip) {
 			myAdapter.log.warn('No IP address defined');
