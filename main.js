@@ -801,10 +801,10 @@ function mergeObject(obj, cb) {
     });
 }
 
-function mergeObjects(objs, cb) {
-	this.log.warn('mergeObjects called');
+function mergeObjects(myAdapter, objs, cb) {
+	myAdapter.log.warn('mergeObjects called');
     if (!objs || !objs.length) {
-		this.log.warn('missing objs');
+		myAdapter.log.warn('missing objs');
         if (typeof cb === 'function') {
             cb();
         }
