@@ -51,7 +51,6 @@ class Hegoadapter extends utils.Adapter {
 	/**
 	 * Is called when databases are connected and adapter received configuration.
 	 */
-var i=0;
 	async onReady() {
 		// Initialize your adapter here
 
