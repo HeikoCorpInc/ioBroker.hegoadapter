@@ -39,7 +39,6 @@ class Hegoadapter extends utils.Adapter {
 		super({
 			...options,
 			name: "hegoadapter",
-			myAdapter: let myAdapter = this,
 		});
 		this.on("ready", this.onReady.bind(this));
 		this.on("stateChange", this.onStateChange.bind(this));
@@ -77,6 +76,7 @@ class Hegoadapter extends utils.Adapter {
 			native: {},
 		});
 */		
+		let myAdapter = this,
 		myAdapter.config.commandRepeat = parseInt(myAdapter.config.commandRepeat, 10) || 2;
 		if (!myAdapter.config.ip) {
 			myAdapter.log.warn('No IP address defined');
@@ -766,9 +766,9 @@ function splitColor(rgb) {
     }
 }
 
-function mergeObject(obj, cb) {
+function mergeObject(myAdapter, obj, cb) {
 	myAdapter.log.warn('who am I?');  //-----------------> mich gibts nicht!!!!
-    this.getForeignObject(obj._id, function (err, _obj) {
+    myAdapter.getForeignObject(obj._id, function (err, _obj) {
         if (_obj) {
             var changed = false;
             for (var attr in obj) {
@@ -790,28 +790,28 @@ function mergeObject(obj, cb) {
                 }
             }
             if (changed) {
-                this.setForeignObject(obj._id, _obj, function () {
+                myAdapter.setForeignObject(obj._id, _obj, function () {
                     cb && cb();
                 });
             } else {
                 cb && cb();
             }
         } else {
-            this.setForeignObject(obj._id, obj, function () {
+            myAdapter.setForeignObject(obj._id, obj, function () {
                 cb && cb();
             });
         }
     });
 }
 
-function mergeObjects(objs, cb) {
+function mergeObjects(myAdapter, objs, cb) {
     if (!objs || !objs.length) {
         if (typeof cb === 'function') {
             cb();
         }
         return;
     }
-    mergeObject(objs.shift(), function () {
+    mergeObject(myAdapter, objs.shift(), function () {
         setTimeout(mergeObjects, 0, objs, cb);
     });
 }
