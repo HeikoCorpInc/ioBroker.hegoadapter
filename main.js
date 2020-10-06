@@ -192,7 +192,6 @@ class Hegoadapter extends utils.Adapter {
 			myAdapter.subscribeStates('*');
 		});
 		function mergeObject(obj, cb) {
-			myAdapter.log.warn('who am I?');  //-----------------> mich gibts nicht!!!!
 			myAdapter.getForeignObject(obj._id, function (err, _obj) {
 				if (_obj) {
 					var changed = false;
@@ -230,9 +229,7 @@ class Hegoadapter extends utils.Adapter {
 		}
 
 		function mergeObjects(objs, cb) {
-			myAdapter.log.warn('mergeObjects called');
 			if (!objs || !objs.length) {
-				myAdapter.log.warn('missing objs');
 				if (typeof cb === 'function') {
 					cb();
 				}
