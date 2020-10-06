@@ -802,7 +802,9 @@ function mergeObject(obj, cb) {
 }
 
 function mergeObjects(objs, cb) {
+	myAdapter.log.warn('mergeObjects called');
     if (!objs || !objs.length) {
+		myAdapter.log.warn('missing objs');
         if (typeof cb === 'function') {
             cb();
         }
