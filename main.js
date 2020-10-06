@@ -766,7 +766,7 @@ function splitColor(rgb) {
 }
 
 function mergeObject(obj, cb) {
-	this.log.warn('who am I?');
+	myAdapter.log.warn('who am I?');  //-----------------> mich gibts nicht!!!!
     this.getForeignObject(obj._id, function (err, _obj) {
         if (_obj) {
             var changed = false;
