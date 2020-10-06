@@ -798,8 +798,8 @@ function mergeObject(obj, cb) {
                 cb && cb();
             });
         }
-  */  }/*)*/;
-}
+    });
+*/}
 
 function mergeObjects(objs, cb) {
     if (!objs || !objs.length) {
