@@ -763,7 +763,7 @@ function splitColor(rgb) {
     }
 }
 
-function mergeObject(obj, cb) {
+function mergeObject(myAdapter, obj, cb) {
 	myAdapter.log.warn('who am I?');  //-----------------> mich gibts nicht!!!!
     myAdapter.getForeignObject(obj._id, function (err, _obj) {
         if (_obj) {
@@ -810,7 +810,7 @@ function mergeObjects(myAdapter, objs, cb) {
         }
         return;
     }
-    mergeObject(objs.shift(), function () {
+    mergeObject(myAdapter, objs.shift(), function () {
         setTimeout(mergeObjects, 0, objs, cb);
     });
 }
