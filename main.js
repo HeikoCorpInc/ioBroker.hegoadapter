@@ -76,7 +76,7 @@ class Hegoadapter extends utils.Adapter {
 			native: {},
 		});
 */		
-		let myAdapter = this,
+//		let myAdapter = this,
 		myAdapter.config.commandRepeat = parseInt(myAdapter.config.commandRepeat, 10) || 2;
 		if (!myAdapter.config.ip) {
 			myAdapter.log.warn('No IP address defined');
