@@ -83,7 +83,12 @@
 	            //if ($(this).val() === 'FUT021') {
 	                $('#port').val(666);
 	                //document.getElementById('zone2').setAttribute('disabled','disabled');
-					$('#zone2').setAttribute('disabled','disabled');
+					//$('#zone2').setAttribute('disabled','disabled');
+					if ($('#zone2').attr('disabled'))
+						$('#port').val(777);
+					$('#zone2').attr('disabled') = 'disabled';
+					$('#zone3').attr('disabled') = 'true';
+					$('#zone4').attr('disabled') = true;
 	            //}
 	        });
         // Signal to admin, that no changes yet
