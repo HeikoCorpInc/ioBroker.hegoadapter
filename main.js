@@ -763,8 +763,8 @@ function splitColor(rgb) {
     }
 }
 
-function mergeObject(myAdapterD, obj, cb) {
-	myAdapterD.log.warn('who am I?');  //-----------------> mich gibts nicht!!!!
+function mergeObject(obj, cb) {
+/*	myAdapter.log.warn('who am I?');  //-----------------> mich gibts nicht!!!!
     myAdapter.getForeignObject(obj._id, function (err, _obj) {
         if (_obj) {
             var changed = false;
@@ -798,17 +798,17 @@ function mergeObject(myAdapterD, obj, cb) {
                 cb && cb();
             });
         }
-    });
+  */  });
 }
 
-function mergeObjects(myAdapterC, objs, cb) {
+function mergeObjects(objs, cb) {
     if (!objs || !objs.length) {
         if (typeof cb === 'function') {
             cb();
         }
         return;
     }
-    mergeObject(myAdapterC, objs.shift(), function () {
+    mergeObject(objs.shift(), function () {
         setTimeout(mergeObjects, 0, objs, cb);
     });
 }
