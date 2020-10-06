@@ -39,13 +39,14 @@ class Hegoadapter extends utils.Adapter {
 		super({
 			...options,
 			name: "hegoadapter",
+			myAdapter: let myAdapter = this,
 		});
 		this.on("ready", this.onReady.bind(this));
 		this.on("stateChange", this.onStateChange.bind(this));
 		// this.on("objectChange", this.onObjectChange.bind(this));
 		this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
-		let myAdapter = this;
+		
 	}
 
 	/**
