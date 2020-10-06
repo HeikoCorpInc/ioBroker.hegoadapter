@@ -81,7 +81,8 @@
 	        });
 	        $('#zone1').change(function () {
 	            if ($(this).val() === 'FUT021') {
-	                $('#zone1').disabled = true;
+	                var x = document.getElementById("zone2").disabled;
+					//$('#zone2').disabled = true;
 	            }
 	        });
         // Signal to admin, that no changes yet
