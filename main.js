@@ -51,6 +51,7 @@ class Hegoadapter extends utils.Adapter {
 	/**
 	 * Is called when databases are connected and adapter received configuration.
 	 */
+var i=0;
 	async onReady() {
 		// Initialize your adapter here
 
@@ -76,7 +77,8 @@ class Hegoadapter extends utils.Adapter {
 			native: {},
 		});
 */		
-//		let myAdapter = this,
+		let myAdapter = this,
+		this.console.warn('myAdapter: ' + i); i++;
 		myAdapter.config.commandRepeat = parseInt(myAdapter.config.commandRepeat, 10) || 2;
 		if (!myAdapter.config.ip) {
 			myAdapter.log.warn('No IP address defined');
