@@ -188,9 +188,60 @@ class Hegoadapter extends utils.Adapter {
 			}
 		}
 
-		mergeObjects(myAdapter, objs, function () {
+		mergeObjects(objs, function () {
 			myAdapter.subscribeStates('*');
 		});
+		function mergeObject(obj, cb) {
+			myAdapter.log.warn('who am I?');  //-----------------> mich gibts nicht!!!!
+			myAdapter.getForeignObject(obj._id, function (err, _obj) {
+				if (_obj) {
+					var changed = false;
+					for (var attr in obj) {
+						if (!obj.hasOwnProperty(attr)) continue;
+
+						if (typeof obj[attr] === 'object') {
+							for (var _attr in obj[attr]) {
+								if (obj[attr].hasOwnProperty(_attr) && (!_obj[attr] || _obj[attr][_attr] !== obj[attr][_attr])) {
+									_obj[attr] = _obj[attr] || {};
+									_obj[attr][_attr] = obj[attr][_attr];
+									changed = true;
+								}
+							}
+						} else {
+							if (obj[attr] !== _obj[attr]) {
+								_obj[attr] = _obj[attr];
+								changed = true;
+							}
+						}
+					}
+					if (changed) {
+						myAdapter.setForeignObject(obj._id, _obj, function () {
+							cb && cb();
+						});
+					} else {
+						cb && cb();
+					}
+				} else {
+					myAdapter.setForeignObject(obj._id, obj, function () {
+						cb && cb();
+					});
+				}
+			});
+		}
+
+		function mergeObjects(objs, cb) {
+			myAdapter.log.warn('mergeObjects called');
+			if (!objs || !objs.length) {
+				myAdapter.log.warn('missing objs');
+				if (typeof cb === 'function') {
+					cb();
+				}
+				return;
+			}
+			mergeObject(objs.shift(), function () {
+				setTimeout(mergeObjects, 0, objs, cb);
+			});
+		}
 
 
 		// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
@@ -763,54 +814,3 @@ function splitColor(rgb) {
     }
 }
 
-function mergeObject(myAdapter, obj, cb) {
-	myAdapter.log.warn('who am I?');  //-----------------> mich gibts nicht!!!!
-    myAdapter.getForeignObject(obj._id, function (err, _obj) {
-        if (_obj) {
-            var changed = false;
-            for (var attr in obj) {
-                if (!obj.hasOwnProperty(attr)) continue;
-
-                if (typeof obj[attr] === 'object') {
-                    for (var _attr in obj[attr]) {
-                        if (obj[attr].hasOwnProperty(_attr) && (!_obj[attr] || _obj[attr][_attr] !== obj[attr][_attr])) {
-                            _obj[attr] = _obj[attr] || {};
-                            _obj[attr][_attr] = obj[attr][_attr];
-                            changed = true;
-                        }
-                    }
-                } else {
-                    if (obj[attr] !== _obj[attr]) {
-                        _obj[attr] = _obj[attr];
-                        changed = true;
-                    }
-                }
-            }
-            if (changed) {
-                myAdapter.setForeignObject(obj._id, _obj, function () {
-                    cb && cb();
-                });
-            } else {
-                cb && cb();
-            }
-        } else {
-            myAdapter.setForeignObject(obj._id, obj, function () {
-                cb && cb();
-            });
-        }
-    });
-}
-
-function mergeObjects(myAdapter, objs, cb) {
-	myAdapter.log.warn('mergeObjects called');
-    if (!objs || !objs.length) {
-		myAdapter.log.warn('missing objs');
-        if (typeof cb === 'function') {
-            cb();
-        }
-        return;
-    }
-    mergeObject(myAdapter, objs.shift(), function () {
-        setTimeout(mergeObjects, 0, objs, cb);
-    });
-}
