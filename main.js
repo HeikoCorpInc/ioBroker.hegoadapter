@@ -764,7 +764,7 @@ function splitColor(rgb) {
 }
 
 function mergeObject(obj, cb) {
-/*	myAdapter.log.warn('who am I?');  //-----------------> mich gibts nicht!!!!
+	myAdapter.log.warn('who am I?');  //-----------------> mich gibts nicht!!!!
     myAdapter.getForeignObject(obj._id, function (err, _obj) {
         if (_obj) {
             var changed = false;
@@ -799,7 +799,7 @@ function mergeObject(obj, cb) {
             });
         }
     });
-*/}
+}
 
 function mergeObjects(objs, cb) {
     if (!objs || !objs.length) {
