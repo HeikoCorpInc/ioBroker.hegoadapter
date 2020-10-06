@@ -82,10 +82,10 @@
 	        $('#zone1').change(function () {
 	            //if ($(this).val() === 'FUT021') {
 	                $('#port').val(666);
-	                //document.getElementById('zone2').setAttribute('disabled','disabled');
+	                var test = document.getElementById('zone2');
 					//$('#zone2').setAttribute('disabled','disabled');
 					if ($('#zone2').attr('disabled'))
-						$('#port').val(777);
+						$('#port').val(test.id);
 					$('#zone2').attr('disabled') = 'disabled';
 					$('#zone3').attr('disabled') = 'true';
 					$('#zone4').attr('disabled') = true;
