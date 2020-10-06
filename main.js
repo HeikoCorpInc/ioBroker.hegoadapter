@@ -14,7 +14,6 @@ var stateCommands = require(__dirname + '/lib/commands');
 var light         = null;
 var zones         = [];
 var commands;
-let myAdapter = this;
 
 var nameStates = {
     v6 :{
@@ -46,6 +45,7 @@ class Hegoadapter extends utils.Adapter {
 		// this.on("objectChange", this.onObjectChange.bind(this));
 		this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
+		let myAdapter = this;
 	}
 
 	/**
