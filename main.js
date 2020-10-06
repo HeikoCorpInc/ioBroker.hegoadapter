@@ -45,8 +45,8 @@ class Hegoadapter extends utils.Adapter {
 		// this.on("objectChange", this.onObjectChange.bind(this));
 		this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
-		let myAdapter = this;
 	}
+	let myAdapter = this;
 
 	/**
 	 * Is called when databases are connected and adapter received configuration.
