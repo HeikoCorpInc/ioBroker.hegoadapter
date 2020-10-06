@@ -188,10 +188,7 @@ class Hegoadapter extends utils.Adapter {
 			}
 		}
 
-		for (var i_index in objs) {
-		  var i = objs[i_index];
-		}
-		mergeObjects(objs, function () {
+		mergeObjects(myAdapter, objs, function () {
 			myAdapter.subscribeStates('*');
 		});
 
@@ -766,8 +763,8 @@ function splitColor(rgb) {
     }
 }
 
-function mergeObject(myAdapter, obj, cb) {
-	myAdapter.log.warn('who am I?');  //-----------------> mich gibts nicht!!!!
+function mergeObject(myAdapterD, obj, cb) {
+	myAdapterD.log.warn('who am I?');  //-----------------> mich gibts nicht!!!!
     myAdapter.getForeignObject(obj._id, function (err, _obj) {
         if (_obj) {
             var changed = false;
@@ -804,14 +801,14 @@ function mergeObject(myAdapter, obj, cb) {
     });
 }
 
-function mergeObjects(myAdapter, objs, cb) {
+function mergeObjects(myAdapterC, objs, cb) {
     if (!objs || !objs.length) {
         if (typeof cb === 'function') {
             cb();
         }
         return;
     }
-    mergeObject(myAdapter, objs.shift(), function () {
+    mergeObject(myAdapterC, objs.shift(), function () {
         setTimeout(mergeObjects, 0, objs, cb);
     });
 }
