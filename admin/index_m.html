@@ -81,13 +81,14 @@
 	        });
 	        $('#zone1').change(function () {
 	            //if ($(this).val() === 'FUT021') {
-	                $('#port').val('666');
+	                $('#port').val(666);
 					$('#zone2').prop('disabled', true);
 					$('#zone3').button('disable');
 					var test3 = document.getElementById('zone4').setAttribute('disabled',true);
 					//if ($('#zone2').attr('disabled'))
 					var msg1 = 'res: ' + $('#zone2').attr('disabled') + '; ' + $('#zone3').attr('disabled') + '; ' + $('#zone4').attr('disabled');
-						$('#ip').val(msg1);
+					//$('#ip').val(msg1);
+						$('#ip').val("666");
 	            //}
 	        });
         // Signal to admin, that no changes yet
