@@ -57,6 +57,7 @@
 			"home automation",
 			"rgb",
 			"limitlessLED"
+			"FUT021"
 		],
 		"license": "MIT",
 		"platform": "Javascript/Node.js",

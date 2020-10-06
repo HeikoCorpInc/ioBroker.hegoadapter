@@ -79,6 +79,11 @@
 	                $('#port').val(5987);
 	            }
 	        });
+	        $('#zone1').change(function () {
+	            if ($(this).val() === 'FUT021') {
+	                console.info('FUT021 selected');
+	            }
+	        });
         // Signal to admin, that no changes yet
 			onChange(false);
 			// reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
