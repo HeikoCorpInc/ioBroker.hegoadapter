@@ -79,18 +79,6 @@
 	                $('#port').val(5987);
 	            }
 	        });
-	        $('#zone1').change(function () {
-	            //if ($(this).val() === 'FUT021') {
-	                $('#port').val(666);
-					$('#zone2').prop('disabled', true);
-					$('#zone3').button('disable');
-					var test3 = document.getElementById('zone4').setAttribute('disabled',true);
-					//if ($('#zone2').attr('disabled'))
-					var msg1 = 'res: ' + $('#zone2').attr('disabled') + '; ' + $('#zone3').attr('disabled') + '; ' + $('#zone4').attr('disabled');
-					$('#ip').val($('#zone2').attr('disabled'));
-					//$('#ip').val("666");
-	            //}
-	        });
         // Signal to admin, that no changes yet
 			onChange(false);
 			// reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
@@ -180,17 +168,19 @@
 	                    <option value="RGBO" class="translate">RGB</option>
 	                    <option value="RGBW" class="translate">RGBW</option>
 	                    <option value="RGBWW" class="translate">RGBWW/Dimmer</option>
+	                    <option value="FUT021" class="translate">FUT021</option>
 	                </select>
 	                <label for="zone1" class="translate">Zone 1</label> 
 	            </div>
 	            <div class="col s6">
-	                    <select class="value" id="zone2">
-	                        <option value="" class="translate">none</option>
-	                        <option value="White" class="translate">White</option>
-	                        <option value="RGBW" class="translate">RGBW</option>
-	                        <option value="RGBWW" class="translate">RGBWW/Dimmer</option>
-	                    </select>
-	                    <label for="zone2" class="translate">Zone2</label>    
+					<select class="value" id="zone2">
+						<option value="" class="translate">none</option>
+						<option value="White" class="translate">White</option>
+						<option value="RGBW" class="translate">RGBW</option>
+	                    <option value="RGBWW" class="translate">RGBWW/Dimmer</option>
+	                    <option value="FUT021" class="translate">FUT021</option>
+	                </select>
+	                <label for="zone2" class="translate">Zone2</label>    
 	            </div>
 	        </div>
 	        <div class="row">
@@ -200,17 +190,19 @@
 	                    <option value="White" class="translate">White</option>
 	                    <option value="RGBW" class="translate">RGBW</option>
 	                    <option value="RGBWW" class="translate">RGBWW/Dimmer</option>
+	                    <option value="FUT021" class="translate">FUT021</option>
 	                </select>
 	                <label for="zone3" class="translate">Zone 3</label> 
 	            </div>
 	            <div class="col s6">
-	                    <select class="value" id="zone4">
-	                        <option value="" class="translate">none</option>
-	                        <option value="White" class="translate">White</option>
-	                        <option value="RGBW" class="translate">RGBW</option>
-	                        <option value="RGBWW" class="translate">RGBWW/Dimmer</option>
-	                    </select>
-	                    <label for="zone4" class="translate">Zone 4</label>    
+					<select class="value" id="zone4">
+						<option value="" class="translate">none</option>
+						<option value="White" class="translate">White</option>
+						<option value="RGBW" class="translate">RGBW</option>
+						<option value="RGBWW" class="translate">RGBWW/Dimmer</option>
+	                    <option value="FUT021" class="translate">FUT021</option>
+					</select>
+					<label for="zone4" class="translate">Zone 4</label>    
 	            </div>
 	        </div>
 	    </div>
