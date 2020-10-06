@@ -17,12 +17,12 @@ var commands;
 
 var nameStates = {
     v6 :{
-        basic:  ['state', 'on', 'off', 'brightnessUp', 'brightnessDown', 'brightness', 'maxBright', 'midBright', 'minBright', 'mode'],
+        basic:  ['state', 'on', 'off', 'whiteMode', 'brightnessUp', 'brightnessDown', 'brightness', 'colorUp', 'colorDown', 'color', 'rgb', 'mode'],
         White:  ['state', 'on', 'off', 'maxBright', 'brightnessUp', 'nightMode', 'brightnessDown', 'warmer', 'cooler', 'nightModeSwitch'],
         RGBO:   ['state', 'on', 'off', 'brightnessUp', 'brightnessDown', 'colorUp', 'colorDown', 'color', 'rgb','modeSpeedUp', 'modeSpeedDown', 'effectModeNext', 'effectModePrev'],
         RGBW:   ['state', 'on', 'off', 'colorMode', 'whiteMode', 'nightMode', 'brightnessUp', 'brightnessDown', 'brightness', 'colorUp', 'colorDown', 'color', 'rgb', 'hue', 'mode', 'modeSpeedUp', 'modeSpeedDown', 'link', 'unlink'],
         RGBWW:  ['state', 'on', 'off', 'colorMode', 'whiteMode', 'nightMode', 'brightnessUp', 'brightnessDown', 'brightness', 'colorUp', 'colorDown', 'color', 'rgb', 'hue', 'mode', 'modeSpeedUp', 'modeSpeedDown', 'link', 'unlink', 'saturationUp', 'saturationDown', 'saturation', 'colorTempUp', 'colorTempDown', 'colorTemp'],
-		FUT021: ['state', 'on', 'off', 'brightnessUp', 'brightnessDown', 'brightness', 'maxBright', 'midBright', 'minBright', 'mode']
+        FUT021: ['state', 'on', 'off', 'brightnessUp', 'brightnessDown', 'brightness', 'maxBright', 'midBright', 'minBright', 'mode']
     },
     v5 :{
         basic:  ['state', 'on', 'off', 'hue', 'rgb', 'whiteMode', 'brightness', 'brightness2', 'effectModeNext', 'effectSpeedUp', 'effectSpeedDown'],
