@@ -77,8 +77,7 @@ var i=0;
 			native: {},
 		});
 */		
-		let myAdapter = this,
-		this.console.warn('myAdapter: ' + i); i++;
+		let myAdapter = this;
 		myAdapter.config.commandRepeat = parseInt(myAdapter.config.commandRepeat, 10) || 2;
 		if (!myAdapter.config.ip) {
 			myAdapter.log.warn('No IP address defined');
