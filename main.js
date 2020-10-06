@@ -798,7 +798,7 @@ function mergeObject(obj, cb) {
                 cb && cb();
             });
         }
-  */  });
+  */  }/*)*/;
 }
 
 function mergeObjects(objs, cb) {
