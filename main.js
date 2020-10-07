@@ -315,9 +315,9 @@ class Hegoadapter extends utils.Adapter {
 	 * @param {ioBroker.State | null | undefined} state
 	 */
 	onStateChange(id, state) {
+		let myAdapter = this;
 		if (state && !state.ack && light) {
 			// The state was changed
-			let myAdapter = this;
 			var tmp = id.split('.');
 			var dp = tmp.pop();
 			var strZone = tmp.slice(2).join('.'); //ZoneX
@@ -614,7 +614,7 @@ class Hegoadapter extends utils.Adapter {
 			myAdapter.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 		} else {
 			// The state was deleted
-			this.log.info(`state ${id} deleted`);
+			myAdapter.log.info(`state ${id} deleted`);
 		}
 	}
 
@@ -625,34 +625,35 @@ class Hegoadapter extends utils.Adapter {
 	//  * @param {ioBroker.Message} obj
 	//  */
 	onMessage(obj) {
+		let myAdapter = this;
 	 	if (typeof obj === "object" && obj.message) {
 	 		if (obj.command === "send") {
 	 			// e.g. send email or pushover or whatever
-	 			this.log.info("send command");
+	 			myAdapter.log.info("send command");
 				var wait = false;
 				if (obj) {
 					switch (obj.command) {
 						case 'browse':
 							var discoverBridges = require('node-milight-promise').discoverBridges;
-							this.log.info('Discover bridges...');
+							myAdapter.log.info('Discover bridges...');
 							discoverBridges({
 								type: 'all'
 							}).then(function (results) {
-								this.log.info('Discover bridges: ' + JSON.stringify(results));
+								myAdapter.log.info('Discover bridges: ' + JSON.stringify(results));
 								// Send response in callback if required
-								if (obj.callback) this.sendTo(obj.from, obj.command, results, obj.callback);
+								if (obj.callback) myAdapter.sendTo(obj.from, obj.command, results, obj.callback);
 							});
 							wait = true;
 							break;
 
 						default:
-							this.log.warn('Unknown command: ' + obj.command);
+							myAdapter.log.warn('Unknown command: ' + obj.command);
 							break;
 					}
 				}
 				if (!wait && obj.callback) {
 					// Send response in callback if required
-					this.sendTo(obj.from, obj.command, obj.message, obj.callback);
+					myAdapter.sendTo(obj.from, obj.command, obj.message, obj.callback);
 				}
 
 				return true;
