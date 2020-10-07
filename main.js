@@ -614,7 +614,7 @@ class Hegoadapter extends utils.Adapter {
 			myAdapter.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 		} else {
 			// The state was deleted
-			myAdapter.log.info(`state ${id} deleted`);
+			this.log.info(`state ${id} deleted`);
 		}
 	}
 
