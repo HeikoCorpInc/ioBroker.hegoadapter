@@ -348,6 +348,7 @@ class Hegoadapter extends utils.Adapter {
 			if (dp === 'midBright')  dp = 'midBrightSet';
 			if (dp === 'minBright')  dp = 'minBrightSet';
 
+			this.log(this);
 			if (this.config.version === '6') {
 				if (dp === 'brightness') dp = 'brightnessSet';
 				if (zones[zone]) {
@@ -434,7 +435,6 @@ class Hegoadapter extends utils.Adapter {
 						}
 						zones[zone].command(dp, val, function (err) {
 							if (!err) {
-								this.log(this);
 								this.setForeignState(id, state.val, true);
 								if (dp === 'on'){
 									this.setForeignState(id, false, true); //Taste auf 0 setzen
