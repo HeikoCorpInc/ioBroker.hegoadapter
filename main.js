@@ -348,7 +348,7 @@ class Hegoadapter extends utils.Adapter {
 			if (dp === 'midBright')  dp = 'midBrightSet';
 			if (dp === 'minBright')  dp = 'minBrightSet';
 
-			this.log(this);
+			this.log.warn(this);
 			if (this.config.version === '6') {
 				if (dp === 'brightness') dp = 'brightnessSet';
 				if (zones[zone]) {
