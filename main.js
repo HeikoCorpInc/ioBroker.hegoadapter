@@ -143,34 +143,26 @@ class Hegoadapter extends utils.Adapter {
 		}
 		for (var z = 1; z <= 4; z++) {
 			var type = myAdapter.config['zone' + z];
-				myAdapter.log.warn('config[zone' + z + ']: ' + myAdapter.config['zone' + z]);
 			var names = nameStatesV[type];
-				myAdapter.log.warn('nameStatesV[' + type + ']: ' + nameStatesV[type]);
 			if (names) {
 				if (myAdapter.config.version === '6') {
 					if (type === 'basic') {
 						zones[z] = light.baseCtlFactory();
-				myAdapter.log.warn('zones[' + z + ']: ' + zones[z]);
 					} else
 					if (type === 'White')  {
 						zones[z] = light.zoneCtlWhiteFactory(z);
-				myAdapter.log.warn('zones[' + z + ']: ' + zones[z]);
 					} else
 					if (type === 'RGBO')  {
 						zones[z] = light.zoneCtlRGBFactory(z);
-				myAdapter.log.warn('zones[' + z + ']: ' + zones[z]);
 					} else
 					if (type === 'RGBW')  {
 						zones[z] = light.zoneCtlRGBWFactory(z);
-				myAdapter.log.warn('zones[' + z + ']: ' + zones[z]);
 					} else
 					if (type === 'RGBWW') {
 						zones[z] = light.zoneCtlRGBWWFactory(z);
-				myAdapter.log.warn('zones[' + z + ']: ' + zones[z]);
 					}
 					if (type === 'FUT021') {
 						zones[z] = light.fut021Ctl(z);
-				myAdapter.log.warn('zones[' + z + ']: ' + zones[z]);
 					}
 				} else {
 					if (type === 'RGBO') {
