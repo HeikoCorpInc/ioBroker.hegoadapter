@@ -168,6 +168,10 @@ class Hegoadapter extends utils.Adapter {
 						zones[z] = light.zoneCtlRGBWWFactory(z);
 				myAdapter.log.warn('zones[' + z + ']: ' + zones[z]);
 					}
+					if (type === 'FUT021') {
+						zones[z] = light.fut021Ctl(z);
+				myAdapter.log.warn('zones[' + z + ']: ' + zones[z]);
+					}
 				} else {
 					if (type === 'RGBO') {
 						zones[z] = commands.rgb;
